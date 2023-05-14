@@ -12,11 +12,11 @@ onMounted(() => {
     //从 Local Storage 中获取用户信息
     let userInfo = storage.getItem("userInfo");
     if(userInfo == null || userInfo == ''){
-        router.push({
+        router.replace({
             name: 'login',
         })
     }else{
-        router.push({
+        router.replace({
             name: 'index',
         })
     }
