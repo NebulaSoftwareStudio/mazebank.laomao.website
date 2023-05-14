@@ -5,7 +5,7 @@
 
             <template v-if="logList.length>0">
                 <div class="function-main-title" style="font-size: 15pt;margin: 20px 0;">您共有
-                    {{ logList.length-1 }} 条记录在案的交易记录
+                    {{ logList.length - 1 }} 条记录在案的交易记录
                 </div>
                 <div class="log-list">
                     <template v-for="(item, index) in logList" :key="index">
@@ -22,7 +22,7 @@
                 <div class="function_main_title">暂无记录在案的交易记录</div>
             </template>
 
-            <div class="confirm-button" style="width:200px;position: absolute;right: 10px;top: 15px;z-index: 5"
+            <div class="confirm-button log-box-button"
                  @click="showMainMenu">主菜单
             </div>
         </div>
@@ -90,6 +90,7 @@ onMounted(() => {
   .function-main-title {
     font-size: 25pt;
     color: #000000;
+    text-align: center;
   }
 
   .log-list {
@@ -130,25 +131,72 @@ onMounted(() => {
       }
     }
   }
+
+  .confirm-button {
+    width: 350px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18pt;
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, #df242f, #b9243a);
+    border: 3px solid #811924;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &.log-box-button {
+      width: 200px;
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      z-index: 5;
+    }
+
+    &:hover {
+      background-image: linear-gradient(to bottom, #b9243a, #df242f);
+      border: 3px solid #140000;
+    }
+  }
 }
 
 
-.confirm-button {
-  width: 350px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18pt;
-  color: #ffffff;
-  background-image: linear-gradient(to bottom, #df242f, #b9243a);
-  border: 3px solid #811924;
-  border-radius: 10px;
-  cursor: pointer;
 
-  &:hover {
-    background-image: linear-gradient(to bottom, #b9243a, #df242f);
-    border: 3px solid #140000;
+
+
+@media (max-width: 792px) {
+  .log-box {
+
+    .log-list{
+      .item{
+        display: block;
+        height: fit-content;
+        padding: 30px;
+
+        .content{
+          max-width: 100%;
+          width: 100%;
+          margin-right: 0;
+        }
+
+        .money{
+          width: 100%;
+        }
+      }
+    }
+
+    .confirm-button{
+      margin: 20px;
+      max-width: 100%;
+
+      &.log-box-button{
+        width: 350px !important;
+        position: relative !important;
+        right: unset !important;
+        top: unset !important;
+        z-index: unset !important;
+      }
+    }
   }
 }
 </style>

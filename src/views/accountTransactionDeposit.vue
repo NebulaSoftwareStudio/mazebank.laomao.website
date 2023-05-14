@@ -126,13 +126,15 @@ const showMainMenu = function () {
 
   .box-main-title {
     width: 100%;
-    height: 100px;
+    padding: 30px;
     background-image: linear-gradient(to bottom, #b9243a, #df242f);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
     font-size: 20pt;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   .control-list {
@@ -169,6 +171,7 @@ const showMainMenu = function () {
 .function-main-title {
   font-size: 25pt;
   color: #000000;
+  text-align: center;
 }
 
 .button-box {
@@ -195,6 +198,25 @@ const showMainMenu = function () {
 .confirm-button:hover {
   background-image: linear-gradient(to bottom, #b9243a, #df242f);
   border: 3px solid #140000;
+}
+
+
+
+@media (max-width: 792px){
+  .full-screen-box{
+    padding: 0 20px 10px 20px;
+  }
+
+  .step-box{
+    height: calc(100% - 10px);
+
+    .control-list{
+      width: 100% !important;
+      column-count: 1 !important;
+      overflow: auto;
+      padding: 20px;
+    }
+  }
 }
 
 </style>
