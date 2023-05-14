@@ -97,6 +97,7 @@ defineExpose({
       }
 
       .worth{
+        width: fit-content;
         margin-left: 20px;
         display: block;
         overflow: hidden;
