@@ -3,42 +3,49 @@
 
     <div class="maze-bank-display-main-box">
         <!-- 顶部logo及菜单 -->
-        <maze-bank-header  />
+        <maze-bank-header ref="mazeBankHeaderRef"/>
 
-        <router-view/>
+        <router-view v-slot="{ Component }">
+            <component ref="routerViewRef" :is="Component" @user-info-change="userInfoChange"/>
+        </router-view>
     </div>
 </template>
 <script setup>
 import MazeBankHeader from "@/components/mazeBankHeader.vue";
-import {watch} from "vue";
-import { useRouter } from 'vue-router'
+import {watch, ref} from "vue";
+import {useRouter} from 'vue-router'
 
 const router = useRouter;
+const mazeBankHeaderRef = ref(null);
 
-watch(router,(e)=>{
+const userInfoChange = function () {
+    mazeBankHeaderRef.value.refreshUserInfo();
+}
+
+watch(router, (e) => {
     console.log(e)
-},{ immediate: true, deep: true })
+}, {immediate: true, deep: true})
 </script>
 
 <style lang="less">
-*{
+* {
   padding: 0;
   margin: 0;
 }
 
-body{
+body {
   background-image: url("@/assets/images/page_background.jpg");
   background-repeat: repeat;
   background-size: 100px 100px;
 }
 
-.top_red_line{
+.top_red_line {
   width: 100%;
   height: 10px;
   background-color: #ee222e;
 }
 
-.maze-bank-display-main-box{
+.maze-bank-display-main-box {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -47,7 +54,7 @@ body{
   min-height: calc(100vh - 10px);
   overflow-y: auto;
 
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
     height: 0;
     width: 0;

@@ -14,9 +14,10 @@
 
 <script setup>
 import nextIcon from "@/assets/images/next.png";
-import {ref, onMounted} from "vue";
+import {ref, onMounted, defineEmits} from "vue";
 import {useRouter} from 'vue-router'
 
+const emit = defineEmits(['userInfoChange'])
 const inputError = ref(false);
 const loginUseUserName = ref("");
 const storage = localStorage;
@@ -42,9 +43,12 @@ const login = function () {
         ];
         storage.setItem("logList", JSON.stringify(logList));
 
-        router.push({
+        router.replace({
             name: 'index',
         })
+
+        // 更新 header 数据
+        emit('userInfoChange');
     }
     loginUseUserName.value = ''
 }

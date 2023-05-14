@@ -10,17 +10,25 @@
 
 <script setup>
 import mazeBankTextLogo from "@/assets/images/mazebank_text_logo.png";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, defineExpose} from "vue";
 
 const storage = localStorage;
 const userInfo = ref({});
 
-onMounted(() => {
+const refreshUserInfo = function (){
     //从 Local Storage 中获取用户信息
     let localUserInfo = storage.getItem("userInfo");
     if(localUserInfo){
         userInfo.value = JSON.parse(localUserInfo);
     }
+}
+
+onMounted(() => {
+    refreshUserInfo();
+})
+
+defineExpose({
+    refreshUserInfo
 })
 </script>
 
@@ -43,13 +51,58 @@ onMounted(() => {
   }
 
   .right-info {
+    max-width: 300px;
     font-size: 15pt;
 
-    .worth {
-      max-width: 300px;
+    .account-name{
+      width: 100%;
+      flex: auto;
+      display: block;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+
+    .worth {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+@media (max-width: 792px){
+  .navigator{
+    flex-flow: column;
+    height: 150px;
+
+    .left-logo{
+      width: 259px;
+      height: 50px;
+    }
+
+    .right-info{
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+
+      .account-name{
+        width: 40%;
+        flex: auto;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .worth{
+        margin-left: 20px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

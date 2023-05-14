@@ -55,6 +55,11 @@ onMounted(() => {
 .function_main_title{
   font-size: 25pt;
   color: #000000;
+  max-width: 500px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .confirm_button{
